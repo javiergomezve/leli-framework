@@ -40,4 +40,19 @@ class Router
     {
         $this->routes[HttpMethod::POST->value][$uri] = $action;
     }
+
+    public function put(string $uri, callable $action): void
+    {
+        $this->routes[HttpMethod::PUT->value][$uri] = $action;
+    }
+
+    public function patch(string $uri, callable $action): void
+    {
+        $this->routes[HttpMethod::PATCH->value][$uri] = $action;
+    }
+
+    public function delete(string $uri, callable $action): void
+    {
+        $this->routes[HttpMethod::DELETE->value][$uri] = $action;
+    }
 }
