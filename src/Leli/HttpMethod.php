@@ -1,5 +1,7 @@
 <?php
 
+namespace Leli;
+
 enum HttpMethod: string
 {
     case GET = "GET";

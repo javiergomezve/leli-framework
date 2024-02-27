@@ -1,6 +1,9 @@
 <?php
 
-require "./Router.php";
+require_once "../vendor/autoload.php";
+
+use Leli\HttpNotFoundException;
+use Leli\Router;
 
 $router = new Router();
 
