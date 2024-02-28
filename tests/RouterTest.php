@@ -16,7 +16,9 @@ class RouterTest extends TestCase
         $router = new Router();
         $router->get($uri, $action);
 
-        $this->assertEquals($action, $router->resolve($uri, HttpMethod::GET->value));
+        $route = $router->resolve($uri, HttpMethod::GET->value);
+        $this->assertEquals($action, $route->action());
+        $this->assertEquals($uri, $route->uri());
     }
 
     public function test_resolve_multiple_basic_routes_with_callback_action()
@@ -34,7 +36,9 @@ class RouterTest extends TestCase
         }
 
         foreach ($routes as $uri => $action) {
-            $this->assertEquals($action, $router->resolve($uri, HttpMethod::GET->value));
+            $route = $router->resolve($uri, HttpMethod::GET->value);
+            $this->assertEquals($action, $route->action());
+            $this->assertEquals($uri, $route->uri());
         }
     }
 
@@ -61,7 +65,9 @@ class RouterTest extends TestCase
         }
 
         foreach ($routes as [$method, $uri, $action]) {
-            $this->assertEquals($action, $router->resolve($uri, $method));
+            $route = $router->resolve($uri, $method);
+            $this->assertEquals($action, $route->action());
+            $this->assertEquals($uri, $route->uri());
         }
     }
 }

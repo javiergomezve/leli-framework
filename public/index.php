@@ -1,8 +1,9 @@
 <?php
 
-require_once "../vendor/autoload.php";
+require_once "./vendor/autoload.php";
 
 use Leli\HttpNotFoundException;
+use Leli\Route;
 use Leli\Router;
 
 $router = new Router();
@@ -16,7 +17,8 @@ $router->post("/", function () {
 });
 
 try {
-    $action = $router->resolve($_SERVER["REQUEST_URI"], $_SERVER["REQUEST_METHOD"]);
+    $route = $router->resolve($_SERVER["REQUEST_URI"], $_SERVER["REQUEST_METHOD"]);
+    $action = $route->action();
     print($action());
 } catch (HttpNotFoundException $e) {
     print("Not found");
